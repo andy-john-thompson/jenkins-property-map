@@ -1,5 +1,5 @@
 //Jenkinsfile showing an example of how to read in values from properties files
-def SLAVE="fyre_ubuntu_vm"
+def SLAVE="the_slave_label"
 
 def set_property_map() {
   def component_one_properties = readProperties file: "${WORKSPACE}/properties/component_one.properties"
@@ -14,7 +14,7 @@ node ("${SLAVE}") {
     stage('checkout scm'){
       checkout scm
     }
-    
+
     stage('use properties'){
       withEnv(set_property_map()) {
         sh '${WORKSPACE}/test_properties.sh'
